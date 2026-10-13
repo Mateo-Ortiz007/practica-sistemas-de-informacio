@@ -1,0 +1,555 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación diagnóstica - Sistemas de Información</title>
+    <style>
+        /* Variables de colores y tipografía */
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --primary-light: #3b82f6;
+            --secondary-color: #10b981;
+            --accent-color: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Tipografía */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 0.75rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Main */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Secciones */
+        section {
+            background: var(--bg-white);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        section#presentacion {
+            border-left-color: var(--secondary-color);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%);
+        }
+
+        section h3 {
+            color: var(--primary-color);
+            margin-top: 1.5rem;
+        }
+
+        section p {
+            text-align: justify;
+        }
+
+        /* Artículos dentro de secciones */
+        article {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        article:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        article h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        article p {
+            margin-bottom: 0;
+        }
+
+        /* Botón de navegación */
+        a[href="punto2.html"] {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+        }
+
+        a[href="punto2.html"]:hover {
+            background-color: #d97706;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        a[href="punto2.html"]:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--text-dark) 0%, #374151 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Adaptación para tablets (768px) */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+
+            p {
+                font-size: 0.95rem;
+            }
+
+            header {
+                padding: 2rem 1.5rem;
+            }
+
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            main {
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            article {
+                padding: 1.2rem;
+                margin: 1rem 0;
+            }
+        }
+
+        /* Adaptación para móviles (480px) */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+                padding-bottom: 0.5rem;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            header {
+                padding: 1.5rem 1rem;
+                margin-bottom: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+                margin-bottom: 0.3rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            main {
+                padding: 0 0.75rem;
+                max-width: 100%;
+            }
+
+            section {
+                padding: 1.25rem;
+                margin-bottom: 1rem;
+                border-left-width: 4px;
+            }
+
+            article {
+                padding: 1rem;
+                margin: 0.75rem 0;
+                border-left-width: 3px;
+            }
+
+            article:hover {
+                transform: translateX(2px);
+            }
+
+            footer {
+                padding: 1.5rem 1rem;
+            }
+
+            footer p {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Estilos para impresión */
+        @media print {
+            body {
+                background-color: white;
+            }
+
+            section {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid var(--border-color);
+            }
+
+            header, footer {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Evaluación diagnóstica</h1>
+        <p>Asignatura: Sistemas de Información</p>
+        <p>Actividad inicial para identificar los conocimientos previos de los estudiantes.</p>
+    </header>
+
+    <main>
+        <section id="presentacion">
+
+            <h3>Integrantes</h3>
+            <p>Integrante 1: Andy Fernando Ortega Ahuananchi</p>
+            <p>Integrante 2: Fausto Mateo Ortiz Molina</p>
+            <p>Fecha: 13/10/2026</p>
+
+            <div style="margin-top: 1.5rem; text-align: center;">
+                <a href="punto2.html" style="display: inline-block; background-color: var(--accent-color); color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.3s ease; box-shadow: var(--shadow);">
+                    Ver análisis del video (Punto 2)
+                </a>
+            </div>
+        </section>
+
+        <section id="pregunta-1">
+            <h2>1. ¿Qué entienden por sistema de información?</h2>
+            <p>
+                Entendemos que un sistema de información es un conjunto de elementos
+                que trabajan de manera organizada para recopilar, procesar, almacenar
+                y presentar información útil. Puede incluir personas, programas,
+                equipos tecnológicos y datos que ayudan a realizar actividades
+                y tomar decisiones.
+            </p>
+        </section>
+
+        <section id="pregunta-2">
+            <h2>2. ¿Cuál es la diferencia entre un dato y una información?</h2>
+            <p>
+                Un dato es un valor o un hecho aislado que todavía puede no tener
+                un significado claro. La información se obtiene cuando los datos
+                se organizan y se interpretan para comprender una situación.
+            </p>
+            <p><strong>Ejemplo:</strong></p>
+            <p>
+                El número 150 es un dato. Si sabemos que una tienda vendió
+                150 productos durante un día, ese dato se convierte en información
+                que permite conocer el nivel de ventas.
+            </p>
+        </section>
+
+        <section id="pregunta-3">
+            <h2>3. ¿Qué elementos consideran que forman parte de un sistema de información?</h2>
+            <p>
+                Consideramos que los principales elementos son las personas,
+                los datos, el hardware, el software, los procedimientos y las redes
+                de comunicación. Todos cumplen una función para que el sistema
+                pueda recibir datos, procesarlos, almacenarlos y mostrar resultados.
+            </p>
+        </section>
+
+        <section id="pregunta-4">
+            <h2>4. Mencionen dos sistemas de información que utilicen con frecuencia.</h2>
+
+            <article>
+                <h3>Primer ejemplo: Aplicación bancaria</h3>
+                <p>
+                    Permite consultar el saldo de una cuenta, revisar movimientos
+                    y realizar transferencias. Utiliza información financiera
+                    para mostrar al usuario el estado de sus operaciones.
+                </p>
+            </article>
+
+            <article>
+                <h3>Segundo ejemplo: Plataforma educativa</h3>
+                <p>
+                    Permite consultar tareas, revisar calificaciones, descargar
+                    materiales y recibir avisos de los docentes. Organiza la
+                    información académica de estudiantes y profesores.
+                </p>
+            </article>
+        </section>
+
+        <section id="pregunta-5">
+            <h2>5. ¿Cuál consideran que es la función de una base de datos dentro de un sistema de información?</h2>
+            <p>
+                Una base de datos permite guardar y organizar la información
+                para consultarla, modificarla y mantenerla disponible cuando
+                sea necesaria. Por ejemplo, una institución educativa puede
+                almacenar los datos de sus estudiantes, las asignaturas y
+                las calificaciones para acceder a ellos de forma organizada.
+            </p>
+        </section>
+
+        <section id="pregunta-6">
+            <h2>6. ¿Cómo podría ayudar un sistema de información a una empresa que necesita controlar clientes, ventas e inventario?</h2>
+            <p>
+                El sistema podría reunir los datos de los clientes, registrar
+                las ventas y actualizar las cantidades de productos disponibles.
+                De esta manera, la empresa tendría un mejor control de sus
+                operaciones, podría identificar los productos que necesita
+                reponer, consultar el historial de compras y reducir errores
+                al registrar información manualmente.
+            </p>
+        </section>
+
+        <section id="pregunta-7">
+            <h2>7. Términos relacionados con los sistemas de información y el desarrollo de software</h2>
+
+            <article>
+                <h3>ERP</h3>
+                <p>
+                    Es un sistema que integra diferentes áreas de una empresa,
+                    como ventas, compras, contabilidad e inventario, para
+                    administrar sus operaciones desde un mismo entorno.
+                </p>
+            </article>
+
+            <article>
+                <h3>CRM</h3>
+                <p>
+                    Es una herramienta que ayuda a gestionar la relación con
+                    los clientes, registrar sus datos y realizar seguimiento
+                    de las ventas y la atención que reciben.
+                </p>
+            </article>
+
+            <article>
+                <h3>Aplicación web</h3>
+                <p>
+                    Es un programa al que se accede mediante un navegador
+                    y que permite realizar actividades a través de internet
+                    o de una red local.
+                </p>
+            </article>
+
+            <article>
+                <h3>Aplicación móvil</h3>
+                <p>
+                    Es un programa diseñado para utilizarse en dispositivos
+                    móviles, como teléfonos inteligentes y tabletas.
+                </p>
+            </article>
+
+            <article>
+                <h3>Computación en la nube</h3>
+                <p>
+                    Es una forma de utilizar recursos tecnológicos, como
+                    almacenamiento, servidores y aplicaciones, a través
+                    de internet sin depender únicamente de un equipo local.
+                </p>
+            </article>
+
+            <article>
+                <h3>API</h3>
+                <p>
+                    Es una interfaz que permite que dos programas se
+                    comuniquen e intercambien datos o soliciten funciones
+                    entre sí.
+                </p>
+            </article>
+
+            <article>
+                <h3>UML</h3>
+                <p>
+                    Es un lenguaje de modelado que utiliza diagramas para
+                    representar la estructura y el comportamiento de un
+                    sistema de software.
+                </p>
+            </article>
+
+            <article>
+                <h3>Scrum</h3>
+                <p>
+                    Es un marco de trabajo que organiza el desarrollo de
+                    proyectos en periodos cortos, con revisiones frecuentes
+                    y colaboración entre los integrantes del equipo.
+                </p>
+            </article>
+
+            <article>
+                <h3>Kanban</h3>
+                <p>
+                    Es un método visual para organizar tareas y observar
+                    su avance mediante estados como pendiente, en proceso
+                    y terminado.
+                </p>
+            </article>
+        </section>
+
+        <section id="pregunta-8">
+            <h2>8. ¿Qué entienden por requerimiento de un sistema de software?</h2>
+            <p>
+                Un requerimiento es una necesidad o condición que debe
+                cumplir un sistema para satisfacer las expectativas de
+                sus usuarios. Puede indicar una función que debe realizar
+                el programa o una característica que debe tener, como
+                la seguridad, la rapidez o la facilidad de uso.
+            </p>
+            <p><strong>Ejemplo:</strong> Un sistema de ventas debe permitir registrar productos y calcular el total de una compra.</p>
+        </section>
+
+        <section id="pregunta-9">
+            <h2>9. ¿Para qué creen que sirve realizar diagramas o modelos antes de desarrollar un sistema?</h2>
+            <p>
+                Los diagramas y modelos ayudan a planificar y comprender
+                cómo funcionará el sistema antes de comenzar a programarlo.
+                Permiten identificar sus componentes, organizar los procesos,
+                visualizar las relaciones entre los elementos y detectar
+                posibles problemas con anticipación. También facilitan la
+                comunicación entre las personas que participan en el proyecto.
+            </p>
+        </section>
+
+        <section id="pregunta-10">
+            <h2>10. ¿Qué metodología, enfoque o forma de trabajo para desarrollar software conocen?</h2>
+            <p>
+                Conocemos de manera general las metodologías ágiles, que
+                permiten desarrollar software mediante entregas progresivas,
+                revisión de resultados y colaboración entre los integrantes
+                del equipo. Entre sus enfoques se encuentran Scrum y Kanban,
+                que ayudan a organizar las actividades y dar seguimiento
+                al avance del trabajo.
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Trabajo académico realizado en pareja.</p>
+        <p>Evaluación diagnóstica de la asignatura de Sistemas de Información.</p>
+    </footer>
+
+</body>
+</html>
+```
